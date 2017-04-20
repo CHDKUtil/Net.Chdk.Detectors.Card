@@ -34,21 +34,14 @@ namespace Net.Chdk.Detectors.Card
 
         private CardInfo GetCard(ManagementObject volume)
         {
-            var deviceId = (string)volume["DeviceID"];
-            var driveLetter = (string)volume["DriveLetter"];
-            var label = (string)volume["Label"];
-            var fileSystem = (string)volume["FileSystem"];
-            var capacity = (ulong)volume["Capacity"];
-            var freeSpace = (ulong)volume["FreeSpace"];
-
             return new CardInfo
             {
-                DeviceId = deviceId,
-                DriveLetter = driveLetter,
-                Label = label,
-                FileSystem = fileSystem,
-                Capacity = capacity,
-                FreeSpace = freeSpace,
+                DeviceId = (string)volume["DeviceID"],
+                DriveLetter = (string)volume["DriveLetter"],
+                Label = (string)volume["Label"],
+                FileSystem = (string)volume["FileSystem"],
+                Capacity = (ulong)volume["Capacity"],
+                FreeSpace = (ulong)volume["FreeSpace"],
             };
         }
     }
