@@ -40,8 +40,8 @@ namespace Net.Chdk.Detectors.Card
                 DriveLetter = (string)volume["DriveLetter"],
                 Label = (string)volume["Label"],
                 FileSystem = (string)volume["FileSystem"],
-                Capacity = (ulong)volume["Capacity"],
-                FreeSpace = (ulong)volume["FreeSpace"],
+                Capacity = (ulong?)volume["Capacity"],
+                FreeSpace = (ulong?)volume["FreeSpace"],
             };
         }
     }
