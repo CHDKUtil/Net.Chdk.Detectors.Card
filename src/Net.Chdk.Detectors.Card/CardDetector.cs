@@ -9,6 +9,8 @@ namespace Net.Chdk.Detectors.Card
     {
         private const string CardsQueryString = "SELECT * FROM Win32_Volume WHERE DriveType = 2";
 
+        private static readonly string[] SafeFileSystems = new[] { null, "FAT", "FAT32", "exFAT" };
+
         private ILoggerFactory LoggerFactory { get; }
         private ILogger<CardDetector> Logger { get; }
 
@@ -27,6 +29,7 @@ namespace Net.Chdk.Detectors.Card
             {
                 return volumes
                     .Cast<ManagementObject>()
+                    .Where(IsSafe)
                     .Select(GetCard)
                     .ToArray();
             }
@@ -57,6 +60,12 @@ namespace Net.Chdk.Detectors.Card
                 Capacity = (ulong?)volume["Capacity"],
                 FreeSpace = (ulong?)volume["FreeSpace"],
             };
+        }
+
+        private static bool IsSafe(ManagementObject volume)
+        {
+            var fileSystem = (string)volume["FileSystem"];
+            return SafeFileSystems.Contains(fileSystem);
         }
     }
 }
