@@ -1,5 +1,6 @@
 ﻿using Microsoft.Extensions.Logging;
 using Net.Chdk.Model.Card;
+using System;
 using System.Linq;
 using System.Management;
 
@@ -65,7 +66,7 @@ namespace Net.Chdk.Detectors.Card
         private static bool IsSafe(ManagementObject volume)
         {
             var fileSystem = (string)volume["FileSystem"];
-            return SafeFileSystems.Contains(fileSystem);
+            return SafeFileSystems.Contains(fileSystem, StringComparer.InvariantCulture);
         }
     }
 }
