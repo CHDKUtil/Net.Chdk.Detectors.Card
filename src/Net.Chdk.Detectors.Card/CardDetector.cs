@@ -6,6 +6,7 @@ using System.Management;
 
 namespace Net.Chdk.Detectors.Card
 {
+    [Obsolete]
     public sealed class CardDetector : ICardDetector
     {
         private const string CardsQueryString = "SELECT * FROM Win32_Volume WHERE DriveType = 2";
