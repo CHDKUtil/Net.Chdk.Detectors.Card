@@ -1,2 +1,2 @@
 # Net.Chdk.Detectors.Card
-CHIMP card detectors
+[OBSOLETE] CHIMP card detectors
